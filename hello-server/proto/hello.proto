@@ -1,0 +1,25 @@
+
+// 说明这是什么版本的代码来写的
+syntax = "proto3";
+
+// 这部分的内容是关于最后生成的go文件是处在哪个目录下的，代表当前目录的生成，Service 代表生成了go文件的包名是service
+option  go_package = ".;service";
+
+// 然后我们定义一服务，在这个服务当中需要有一个方法，这个方法可以接受客户端的参数，再返回客户端响应，
+// 其实这个很容易看出，我们定义了一个service，称为SayHello ，这个服务当中有一个rpc方法，名为SayHello
+// 这个方法会发送一个HelloRequest ，然后返回一个HelloResponse
+service SayHello {
+  rpc  SayHello (HelloRequest) returns (HelloResponse) {}
+}
+// message 关键字，其实你可以 理解为golang 当中的结构体。
+// 这里比较特别的是变量后面的“赋值”。注意这里并不是赋值，而是在这个变量在这个message中的位置
+message  HelloRequest {
+  string requestName = 1;
+}
+message  HelloResponse{
+  string responseMsg = 1;
+}
+
+
+
+
